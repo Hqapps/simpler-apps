@@ -12,7 +12,7 @@ Adaptive Mobile Components (AMC) are components built with JavaScript and define
 
 #### Why should I use Simpler Apps and AMCs?
 
-As a developer it is more precise and elegant. It will lead you to creating your own component library. You can break up your app into a blend of components, each with its own css and html definitions (instead of having large number of global CSS and HTML scripts). Your components can interact seamlessly by passing asynchronous events or calling methods on specific instances. It is really smart and a lot of fun!
+As a developer it is more precise and elegant. It will motivate you to create your own component library. You can break up your app into a blend of components, each with its own css and html definitions (instead of having large number of global CSS and HTML scripts). Your components can interact seamlessly by passing asynchronous events or calling methods on specific instances. It is really smart and a lot of fun!
 
 As an organization it will save you a lot of money. You can have one applications team that builds single codebase apps to deploy on many devices and Web. You can invest in building great reusable component library that will lower the cost of future app development. Such investments in app building infrastructure will greatly enhance your business.
 
