@@ -85,8 +85,8 @@ function SimplerApps ()
 	        	callChildComponents ( arguments [0] );
 	        }
 	        else if ( typeof arguments[0] == 'object' ) {
-	        	// causing issues with JQM
-	        	//callChildComponents ( arguments [0].html() );
+	        	// TODO: may be causing issues with JQM
+	        	callChildComponents ( arguments [0].html() );
 	        }
 
 	        return results;
@@ -143,7 +143,7 @@ function SimplerApps ()
 		}
 		
 		// gen code
-		//var html = SA.loader._callAllCreateUI ( 0, compObj.flow );
+		//var html = SA.loader.callAllCreateUI ( 0, compObj.flow );
 		if ( !compObj.createUI ) {
 			alert ( "Invalid State: component should define createUI method" );
 			return;
@@ -273,7 +273,7 @@ function SimplerApps ()
 		if ( showAll == undefined ) {
 			showAll = true;
 		}
-		return SA.loader._callAllCreateUI ( listCompId, list, parentConfig, showAll );
+		return SA.loader.callAllCreateUI ( listCompId, list, parentConfig, showAll );
 	}
 
 	/**
@@ -293,7 +293,7 @@ function SimplerApps ()
 		if ( showAll == undefined ) {
 			showAll = true;
 		}
-		return SA.loader._callAllCreateUI ( listCompId, atomObj, parentConfig, showAll );
+		return SA.loader.callAllCreateUI ( listCompId, atomObj, parentConfig, showAll );
 	}
 	
 	/**
@@ -502,7 +502,7 @@ function SimplerApps ()
 			}
 		}
 		
-		var hidden = this._listHidden(flowObj, forceShow);
+		var hidden = this.listHidden(flowObj, forceShow);
 		
 		// if not hidden add other attributes 
 		if ( !hidden ) {
@@ -539,7 +539,7 @@ function SimplerApps ()
 	/**
 	 * Return true if list supposed to be hidden
 	 */
-	this._listHidden = function ( flowObj, forceShow)
+	this.listHidden = function ( flowObj, forceShow)
 	{
 		var hidden = flowObj.config && flowObj.config.hidden==true && forceShow!=true;
 		return hidden;
@@ -587,20 +587,20 @@ function SimplerApps ()
 		var cssClasses = '';
 		var cssNamesObj = {};
 
-		cssClasses = this._loadCssList(compId, cssClasses, cssNamesObj, cssList);
+		cssClasses = loadCssList(compId, cssClasses, cssNamesObj, cssList);
 		
 		//console.log ( cssClasses );
 		
 		// set all locally defined CSS classes
 		SA.comps.setComponentCssNames(compId, cssNamesObj);
 		
-		this.addCssToDOM ( cssClasses );		
+		addCssToDOM ( cssClasses );		
 	}
 	
 	/**
 	 * Loads the css list declaration into the DOM ( which translates to div id )
 	 */
-	this._loadCssList = function ( compId, cssClasses, cssNamesObj, cssList )
+	function loadCssList ( compId, cssClasses, cssNamesObj, cssList )
 	{
 		var cssItems = cssList.items;
 		// if a list of items
@@ -611,7 +611,7 @@ function SimplerApps ()
 				for ( i=0; i<cssItems.length; i++ ) {
 
 					// call a child css node
-					subcssClasses = this._loadCssList(compId, subcssClasses, cssNamesObj, cssItems [i] )
+					subcssClasses = loadCssList(compId, subcssClasses, cssNamesObj, cssItems [i] )
 				}
 				if ( cssList.name )
 					cssClasses += cssList.name + '{' + subcssClasses + '} ';
@@ -646,7 +646,7 @@ function SimplerApps ()
 	/**
 	 * Adds CSS classes string to the dom
 	 */
-	this.addCssToDOM = function ( css )
+	function addCssToDOM ( css )
 	{
 	    var styleTag = document.getElementsByTagName('style')[0];
 	    var originalStyles = '';
@@ -1213,7 +1213,7 @@ function Loader ()
 	 * Note: The config passed in the parentList at this point. If childList is passed, the it is processed
 	 * after merged with parent list
 	 */
-	this._callAllCreateUI = function ( ownerId, list, parentConfig, showAll )
+	this.callAllCreateUI = function ( ownerId, list, parentConfig, showAll )
 	{
 		var result = '';
 		if ( parentConfig ) {
@@ -1260,7 +1260,7 @@ function Loader ()
 				itemsOutput += html;
 				
 				// check if list should be hidden
-				var hidden = SA._listHidden (flowList, forceShow) ;
+				var hidden = SA.listHidden (flowList, forceShow) ;
 				
 				// process items list
 				var i = 0;
@@ -1356,7 +1356,7 @@ function Loader ()
 		}
 	}
 	
-	this._getHiddenListPanel = function ( flowList, hidden )
+	function getHiddenListPanel ( flowList, hidden )
 	{
 		var div = '';
 		if ( flowList.name ) {

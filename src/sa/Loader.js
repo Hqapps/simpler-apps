@@ -10,7 +10,7 @@ function Loader ()
 	 * Note: The config passed in the parentList at this point. If childList is passed, the it is processed
 	 * after merged with parent list
 	 */
-	this._callAllCreateUI = function ( ownerId, list, parentConfig, showAll )
+	this.callAllCreateUI = function ( ownerId, list, parentConfig, showAll )
 	{
 		var result = '';
 		if ( parentConfig ) {
@@ -57,7 +57,7 @@ function Loader ()
 				itemsOutput += html;
 				
 				// check if list should be hidden
-				var hidden = SA._listHidden (flowList, forceShow) ;
+				var hidden = SA.listHidden (flowList, forceShow) ;
 				
 				// process items list
 				var i = 0;
@@ -153,7 +153,7 @@ function Loader ()
 		}
 	}
 	
-	this._getHiddenListPanel = function ( flowList, hidden )
+	function getHiddenListPanel ( flowList, hidden )
 	{
 		var div = '';
 		if ( flowList.name ) {
