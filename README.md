@@ -10,7 +10,7 @@ The entire SA app is built with components called Adaptive Mobile Components (mo
 
 Adaptive Mobile Components (AMC) are components built with JavaScript and define within its local namespace all the UI elements and the controller logic needed to interact-with and/or render per device specification. The adaptability is part of the components' architecture where it is designed as Responsive to the component level as well as changing its behavior based on usability and the device it runs on. For example, the "CodeTester" component on the home page changes its code editor view based on what device it is running on (make it simpler for mobile devices). Another example will be a component that shows up as a dialog box on a browser and single page on mobile devices.
 
-See below a sample SA AMC component:
+See below a sample SA AMC component that will show different views based on the device it is rendered on. It also shows the handleEvent() and postLoad() method implementations:
 
 ```javascript
 /**
@@ -54,7 +54,14 @@ HelloWorld = function ()
 			css + '">Click Here to See the Message</div>';
 		
 		return html;
-	}	
+	}
+	
+	/**
+	 * Handle async. events sent by other components
+	 */
+	this.handleEvent = function ( event )
+	{
+	}
 	
 	/**
 	 * Called after component HTML is loaded in DOM. 
